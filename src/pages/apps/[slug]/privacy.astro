@@ -1,0 +1,134 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { APPS } from '../../../consts';
+
+export function getStaticPaths() {
+	return APPS.map((app) => ({
+		params: { slug: app.slug },
+		props: { app },
+	}));
+}
+
+const { app } = Astro.props;
+---
+
+<Layout title={`Privacy Policy - ${app.name}`}>
+	<section class="section">
+		<div class="container privacy-content">
+			<div class="header">
+				<img src={app.icon} alt={`${app.name} icon`} class="app-icon" />
+				<h1>Privacy Policy for {app.name}</h1>
+			</div>
+			<p>Last updated: December 2025</p>
+            <p>Thank you for using {app.name}.</p>
+			
+            <p>Your privacy is extremely important to us. This policy explains what information we collect and how it is used.</p>
+
+			<h2>1. No Data Collected</h2>
+			<p>{app.name} does not collect, store, use, or share any personal data.</p>
+            <p>We do not collect:</p>
+            <ul>
+                <li>Personal information</li>
+                <li>Usage data</li>
+                <li>Device identifiers</li>
+                <li>Analytics</li>
+                <li>Location data</li>
+                <li>Contacts, photos, or media files</li>
+                <li>Advertising identifiers (IDFA)</li>
+            </ul>
+            <p>The app operates fully on your device. Any data you enter or create remains local to your device and is never transmitted to our servers or third parties.</p>
+
+			<h2>2. No Third-Party Integrations</h2>
+			<p>The app does not use any third-party SDKs or analytics tools.</p>
+            <p>It does not integrate with advertising networks, tracking frameworks, or data-collecting services.</p>
+
+			<h2>3. No Account or Login</h2>
+			<p>The app does not require you to create an account or sign in.</p>
+            <p>We do not use cloud services to store or sync your data.</p>
+            
+            <h2>4. App Permissions</h2>
+            <p>Some features may require optional iOS permissions (e.g., Photos, Camera, Widgets, Notifications).</p>
+            <p>These permissions are used strictly for functionality and never for data collection.</p>
+            <p>All data accessed through permissions remains on your device.</p>
+            
+            <h2>5. Data Security</h2>
+            <p>Since no data is transmitted or stored by us, there is no risk of your personal information being accessed, shared, or compromised by our systems.</p>
+            <p>Any data stored locally on your device is protected by Apple’s built-in security.</p>
+            
+            <h2>6. Children’s Privacy</h2>
+            <p>{app.name} does not collect any personal data from anyone, including children under 13.</p>
+            <p>The app is safe for users of all ages.</p>
+            
+            <h2>7. Changes to This Policy</h2>
+            <p>If we ever change how the app handles data, we will update this Privacy Policy and notify users as required by Apple’s guidelines.</p>
+            
+            <h2>8. Contact Us</h2>
+            <p>If you have any questions about this Privacy Policy, you can contact us at:</p>
+            <p>Email: <a href="mailto:contact@onesimple.app">contact@onesimple.app</a></p>
+            <p>Website: <a href="https://onesimple.app">onesimple.app</a></p>
+
+            {app.slug === 'profileshapes' && (
+                <>
+                    <h2>Use of Apple Image Playground</h2>
+                    <p>{app.name} includes the optional Apple Image Playground feature provided by Apple.</p>
+                    <p>All processing for Image Playground is performed on your device by Apple’s system frameworks.</p>
+                    <p>Our app does not collect, transmit, store, or access any photos, images, or data used within Image Playground.</p>
+                    <p>We do not receive any information about your content, prompts, or generated images.</p>
+                    <p>Any data handled by Image Playground is subject to Apple’s own privacy and security practices.</p>
+                    <p>Using Image Playground does not change our policy: we do not collect any user data.</p>
+                </>
+            )}
+
+            <div class="back-link">
+                <a href={`/apps/${app.slug}`}>&larr; Back to {app.name}</a>
+            </div>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.privacy-content {
+		max-width: 800px;
+        margin: 0 auto;
+	}
+    
+    .header {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .app-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 14px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+	h1 { 
+        margin-bottom: 0;
+        font-size: 2rem;
+    }
+	h2 { margin-top: 2rem; margin-bottom: 1rem; }
+	p { margin-bottom: 1rem; color: var(--color-text-secondary); line-height: 1.6; }
+    ul { margin-bottom: 1rem; padding-left: 2rem; color: var(--color-text-secondary); line-height: 1.6; }
+    li { margin-bottom: 0.5rem; }
+    a { color: var(--color-accent); font-weight: 500; }
+    
+    .back-link {
+        margin-top: 3rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(0,0,0,0.1);
+    }
+    
+    .back-link a {
+        text-decoration: none;
+        display: inline-block;
+        transition: transform 0.2s;
+    }
+    
+    .back-link a:hover {
+        transform: translateX(-5px);
+    }
+</style>

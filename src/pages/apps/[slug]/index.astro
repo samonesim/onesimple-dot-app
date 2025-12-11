@@ -1,0 +1,158 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { APPS } from '../../../consts';
+
+export function getStaticPaths() {
+	return APPS.map((app) => ({
+		params: { slug: app.slug },
+		props: { app },
+	}));
+}
+
+const { app } = Astro.props;
+---
+
+<Layout title={`${app.name} - OneSimpleApp`} description={app.description}>
+	<section class="app-hero section text-center">
+		<div class="container">
+			<img src={app.icon} alt={`${app.name} icon`} class="app-icon-hero" />
+			<h1 class="app-title">{app.name}</h1>
+			<p class="app-description">{app.description}</p>
+			
+            {app.appStoreId && (
+                <a href={`https://apps.apple.com/app/${app.appStoreId}`} target="_blank" class="store-button">
+                    Download on the App Store
+                </a>
+            )}
+		</div>
+	</section>
+
+	<section class="gallery-section section">
+		<div class="container">
+			<!-- <h2 class="section-title text-center">Screenshots</h2> -->
+			<div class="gallery-scroll">
+				{app.screenshots.map((screenshot, index) => (
+					<div class="screenshot-container">
+						<img src={screenshot} alt={`${app.name} Screenshot ${index + 1}`} class="screenshot" />
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+    <section class="content-section section">
+        <div class="container text-center">
+            <div class="app-links">
+                <a href={`/apps/${app.slug}/contact`} class="secondary-button">Contact Support</a>
+                <a href={`/apps/${app.slug}/privacy`} class="secondary-button">Privacy Policy</a>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<style>
+	.app-hero {
+		padding-top: 4rem;
+	}
+
+	.app-icon-hero {
+		width: 120px;
+		height: 120px;
+		border-radius: 26px;
+		margin: 0 auto 1.5rem;
+		box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+	}
+
+	.app-title {
+		font-size: 2.5rem;
+		font-weight: 700;
+		margin-bottom: 1rem;
+	}
+
+	.app-description {
+		font-size: 1.2rem;
+		color: var(--color-text-secondary);
+		max-width: 600px;
+		margin: 0 auto 2rem;
+	}
+
+	.store-button {
+		display: inline-block;
+		background: #000;
+		color: #fff;
+		padding: 0.8rem 1.5rem;
+		border-radius: 30px;
+		font-weight: 500;
+		transition: transform 0.2s;
+	}
+
+	.store-button:hover {
+		transform: scale(1.05);
+	}
+
+	.gallery-section {
+		background: #FAFAFA;
+        overflow: hidden; /* Hide scrollbar if unwanted or manage it */
+	}
+
+	.gallery-scroll {
+		display: flex;
+		gap: 2rem;
+		overflow-x: auto;
+		padding: 2rem 1rem;
+		-webkit-overflow-scrolling: touch;
+        scroll-padding: 1rem;
+        justify-content: flex-start; /* Or center if few */
+	}
+    
+    /* Hide scrollbar */
+    .gallery-scroll::-webkit-scrollbar {
+        display: none;
+    }
+    .gallery-scroll {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+
+	.screenshot-container {
+		flex: 0 0 auto;
+		width: 250px; /* Adjust based on screenshot aspect ratio */
+		border-radius: 16px;
+		overflow: hidden;
+		box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        transition: transform 0.3s;
+	}
+    
+    .screenshot-container:hover {
+        transform: translateY(-5px);
+    }
+
+	.screenshot {
+		width: 100%;
+		height: auto;
+		display: block;
+	}
+
+    .app-links {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        margin-top: 1rem;
+    }
+
+    .secondary-button {
+        color: var(--color-text-secondary);
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        background: #f5f5f5;
+        transition: all 0.2s;
+        font-size: 0.9rem;
+    }
+
+    .secondary-button:hover {
+        background: #eee;
+        color: var(--color-text);
+        transform: translateY(-2px);
+    }
+</style>

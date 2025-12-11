@@ -1,0 +1,207 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { APPS } from '../../../consts';
+
+export function getStaticPaths() {
+	return APPS.map((app) => ({
+		params: { slug: app.slug },
+		props: { app },
+	}));
+}
+
+const { app } = Astro.props;
+---
+
+<Layout title={`Contact - ${app.name}`}>
+	<section class="section">
+		<div class="container contact-container">
+			<div class="header text-center">
+				<img src={app.icon} alt={`${app.name} icon`} class="app-icon" />
+				<h1>Contact</h1>
+                <p class="subtitle">Have questions, feedback, or need support? We're here to help.</p>
+			</div>
+
+            <div class="form-wrapper">
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        <label for="reason">Reason for contacting</label>
+                        <div class="select-wrapper">
+                            <select id="reason" name="reason" required>
+                                <option value="" disabled selected>Select a reason</option>
+                                <option value="Support">Support</option>
+                                <option value="Feedback">Feedback</option>
+                                <option value="Question">Question</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <svg class="select-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="6" required placeholder="Type your message here..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-button">Send Email</button>
+                </form>
+            </div>
+            
+            <div class="back-link text-center">
+                <a href={`/apps/${app.slug}`}>&larr; Back to {app.name}</a>
+            </div>
+		</div>
+	</section>
+</Layout>
+
+<script define:vars={{ appName: app.name }}>
+    const form = document.getElementById('contact-form');
+    
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(form);
+            const reason = formData.get('reason');
+            const message = formData.get('message');
+            
+            const subject = encodeURIComponent(`${reason}: ${appName}`);
+            const body = encodeURIComponent(
+`Message:
+${message}
+`
+            );
+            
+            // mailto link
+            window.location.href = `mailto:OneSimple.app@gmail.com?subject=${subject}&body=${body}`;
+        });
+    }
+</script>
+
+<style>
+	.contact-container {
+		max-width: 500px;
+        margin: 0 auto;
+	}
+    
+    .header {
+        margin-bottom: 2rem;
+    }
+    
+    .app-icon {
+        width: 72px;
+        height: 72px;
+        border-radius: 16px;
+        margin: 0 auto 1.5rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+	h1 { 
+        margin-bottom: 0.75rem;
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+    }
+    
+    .subtitle {
+        color: var(--color-text-secondary, #666);
+        font-size: 1.05rem;
+        line-height: 1.5;
+    }
+    
+    .form-wrapper {
+        background: #fff;
+        padding: 0;
+    }
+    
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    label {
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: var(--color-text, #111);
+        margin-left: 0.1rem;
+    }
+    
+    input, textarea, select {
+        width: 100%;
+        padding: 0.8rem 1rem;
+        border: 1px solid #e1e1e1;
+        background: #FAFAFA;
+        border-radius: 12px;
+        font-family: inherit;
+        font-size: 1rem;
+        transition: all 0.2s;
+        appearance: none;
+    }
+    
+    input:focus, textarea:focus, select:focus {
+        outline: none;
+        border-color: #000;
+        background: #fff;
+        box-shadow: 0 0 0 4px rgba(0,0,0,0.05);
+    }
+
+    .select-wrapper {
+        position: relative;
+    }
+
+    .select-arrow {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        color: #666;
+    }
+    
+    .submit-button {
+        background: #000;
+        color: #fff;
+        border: none;
+        padding: 1rem;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 1.05rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        margin-top: 0.5rem;
+    }
+    
+    .submit-button:hover {
+        transform: translateY(-1px);
+        background: #222;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    
+    .submit-button:active {
+        transform: translateY(0);
+    }
+    
+    .back-link {
+        margin-top: 3rem;
+    }
+    
+    .back-link a {
+        color: var(--color-text-secondary, #666);
+        font-weight: 500;
+        text-decoration: none;
+        transition: color 0.2s;
+        font-size: 0.9rem;
+    }
+    
+    .back-link a:hover {
+        color: #000;
+    }
+</style>

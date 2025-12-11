@@ -1,5 +1,59 @@
-// Place any global data in this file.
-// You can import this data from anywhere in your site by using the `import` keyword.
+export interface AppData {
+    slug: string;
+    name: string;
+    description: string;
+    icon: string;
+    appStoreId: string; // e.g. "id123456789"
+    screenshots: string[];
+}
 
-export const SITE_TITLE = "Astro Blog";
-export const SITE_DESCRIPTION = "Welcome to my website!";
+const PLACEHOLDER_ICON = '/images/placeholder-icon.svg';
+const PLACEHOLDER_SCREEN = '/images/placeholder-screen.svg';
+const icon = '/images/{slug}/icon.png';
+const screenshot = '/images/{slug}/screenshot.png';
+const screenshots = '/images/{slug}/{index}.webp';
+export const APPS: AppData[] = [
+    {
+        slug: 'screentimer',
+        name: 'ScreenTimer',
+        description: 'Set timers for app usage to control screen time and stay productive.',
+        icon: icon.replace('{slug}', 'screentimer'),
+        appStoreId: 'id1617066838',
+        screenshots: Array.from({ length: 5 }, (_, index) => screenshots.replace('{slug}', 'screentimer').replace('{index}', (index + 1).toString())),
+    },
+    {
+        slug: 'profileshapes',
+        name: 'ProfileShapes',
+        description: 'Create shaped profile pictures for Twitter and other social media.',
+        icon: icon.replace('{slug}', 'profileshapes'),
+        appStoreId: 'id1606362073',
+        screenshots: Array.from({ length: 5 }, (_, index) => screenshots.replace('{slug}', 'profileshapes').replace('{index}', (index + 1).toString())),
+    },
+    {
+        slug: 'timer',
+        name: 'Timer',
+        description: 'Highly configurable timer for intervals, workouts, and more with alerts.',
+        icon: icon.replace('{slug}', 'timer'),
+        appStoreId: 'id1612866946',
+        screenshots: Array.from({ length: 5 }, (_, index) => screenshots.replace('{slug}', 'timer').replace('{index}', (index + 1).toString())),
+    },
+    {
+        slug: 'customnotch',
+        name: 'Custom Notch',
+        description: 'Customize or hide the notch on your iPhone with creative wallpapers.',
+        icon: icon.replace('{slug}', 'customnotch'),
+        appStoreId: 'id1599873919',
+        screenshots: Array.from({ length: 5 }, (_, index) => screenshots.replace('{slug}', 'customnotch').replace('{index}', (index + 1).toString())),
+    },
+    {
+        slug: 'wallax',
+        name: 'Wallax',
+        description: 'Wallpaper editor to resize and fit images perfectly without zooming.',
+        icon: icon.replace('{slug}', 'wallax'),
+        appStoreId: 'id1158223636',
+        screenshots: Array.from({ length: 5 }, (_, index) => screenshots.replace('{slug}', 'wallax').replace('{index}', (index + 1).toString())),
+    }
+];
+
+export const SITE_TITLE = 'OneSimpleApp - Innovative iOS Apps';
+export const SITE_DESCRIPTION = 'Discover our collection of useful and creative apps designed to enhance your iPhone experience.';

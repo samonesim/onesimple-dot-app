@@ -1,0 +1,47 @@
+---
+---
+<header class="navbar">
+	<div class="container navbar-content">
+		<a href="/" class="logo">OneSimpleApp</a>
+		<nav>
+			<a href="/#apps">Apps</a>
+			<a href="/contact">Contact</a>
+		</nav>
+	</div>
+</header>
+
+<style>
+	.navbar {
+		padding: 1.5rem 0;
+		border-bottom: 1px solid transparent;
+		/* background: rgba(255, 255, 255, 0.8);
+		backdrop-filter: blur(10px); */
+        /* Keeping it very simple as per image */
+	}
+
+	.navbar-content {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.logo {
+		font-weight: 600;
+		font-size: 1.1rem;
+		letter-spacing: -0.02em;
+	}
+
+	nav {
+		display: flex;
+		gap: 2rem;
+	}
+
+	nav a {
+		color: var(--color-text-secondary);
+		font-size: 0.95rem;
+	}
+
+	nav a:hover {
+		color: var(--color-text);
+	}
+</style>
