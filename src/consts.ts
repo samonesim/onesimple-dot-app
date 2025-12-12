@@ -18,7 +18,7 @@ export const APPS: AppData[] = [
         name: 'ScreenTimer',
         description: 'Set timers for app usage to control screen time and stay productive.',
         icon: icon.replace('{slug}', 'screentimer'),
-        appStoreId: 'id1617066838',
+        appStoreId: 'id6747777738',
         screenshots: Array.from({ length: 5 }, (_, index) => screenshots.replace('{slug}', 'screentimer').replace('{index}', (index + 1).toString())),
     },
     {
@@ -26,7 +26,7 @@ export const APPS: AppData[] = [
         name: 'ProfileShapes',
         description: 'Create shaped profile pictures for Twitter and other social media.',
         icon: icon.replace('{slug}', 'profileshapes'),
-        appStoreId: 'id1606362073',
+        appStoreId: 'id1607694041',
         screenshots: Array.from({ length: 5 }, (_, index) => screenshots.replace('{slug}', 'profileshapes').replace('{index}', (index + 1).toString())),
     },
     {
@@ -34,7 +34,7 @@ export const APPS: AppData[] = [
         name: 'Timer',
         description: 'Highly configurable timer for intervals, workouts, and more with alerts.',
         icon: icon.replace('{slug}', 'timer'),
-        appStoreId: 'id1612866946',
+        appStoreId: 'id1497262012',
         screenshots: Array.from({ length: 5 }, (_, index) => screenshots.replace('{slug}', 'timer').replace('{index}', (index + 1).toString())),
     },
     {
@@ -42,7 +42,7 @@ export const APPS: AppData[] = [
         name: 'Custom Notch',
         description: 'Customize or hide the notch on your iPhone with creative wallpapers.',
         icon: icon.replace('{slug}', 'customnotch'),
-        appStoreId: 'id1599873919',
+        appStoreId: 'id1313357241',
         screenshots: Array.from({ length: 5 }, (_, index) => screenshots.replace('{slug}', 'customnotch').replace('{index}', (index + 1).toString())),
     },
     {
@@ -50,7 +50,7 @@ export const APPS: AppData[] = [
         name: 'Wallax',
         description: 'Wallpaper editor to resize and fit images perfectly without zooming.',
         icon: icon.replace('{slug}', 'wallax'),
-        appStoreId: 'id1158223636',
+        appStoreId: 'id722262021',
         screenshots: Array.from({ length: 5 }, (_, index) => screenshots.replace('{slug}', 'wallax').replace('{index}', (index + 1).toString())),
     }
 ];
