@@ -39,8 +39,8 @@ export const APPS: AppData[] = [
     },
     {
         slug: 'customnotch',
-        name: 'Custom Notch',
-        description: 'Customize or hide the notch on your iPhone with creative wallpapers.',
+        name: 'Custom Notch & Island',
+        description: 'Customize or hide the notch and island on your iPhone with creative wallpapers.',
         icon: icon.replace('{slug}', 'customnotch'),
         appStoreId: 'id1313357241',
         screenshots: Array.from({ length: 5 }, (_, index) => screenshots.replace('{slug}', 'customnotch').replace('{index}', (index + 1).toString())),
